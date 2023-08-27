@@ -1,10 +1,14 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace ProductManager.Infrastructure.Models
+namespace ProductManager.Core.Entities.ProductManagerDB
 {
-    [Table("Categorias", Schema ="dbo")]
+    [Table("Categorias", Schema = "dbo")]
     public class Categorias
     {
         [Key]

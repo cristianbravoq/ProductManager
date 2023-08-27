@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ProductManager.Infrastructure.Models
+namespace ProductManager.Core.Entities.ProductManagerDB
 {
     [Table("Usuarios", Schema = "dbo")]
     public class Productos

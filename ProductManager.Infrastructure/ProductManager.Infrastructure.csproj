@@ -54,14 +54,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\ProductManagerDBContext.cs" />
-    <Compile Include="Models\ProductManagerModels\Categorias.Models.cs" />
-    <Compile Include="Models\ProductManagerModels\Productos.Models.cs" />
-    <Compile Include="Models\ProductManagerModels\Usuarios.Models.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ProductRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Filters\" />
-    <Folder Include="Repositories\" />
     <Folder Include="Validators\" />
   </ItemGroup>
   <ItemGroup>
@@ -72,10 +69,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProductManager.Api\ProductManager.Api.csproj">
-      <Project>{345cedeb-0890-43b8-a14e-2c1777484584}</Project>
-      <Name>ProductManager.Api</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ProductManager.Core\ProductManager.Core.csproj">
       <Project>{a1e97b26-2cf0-4712-be21-9119584969df}</Project>
       <Name>ProductManager.Core</Name>
