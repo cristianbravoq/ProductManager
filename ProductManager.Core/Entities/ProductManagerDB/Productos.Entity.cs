@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProductManager.Core.Entities.ProductManagerDB
 {
+    [Table("Productos", Schema ="dbo")]
     public class Producto
     {
         [Key]

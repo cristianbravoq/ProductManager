@@ -27,4 +27,3 @@ namespace ProductManager.Core.Entities.ProductManagerDB
         public DateTime? UltimoAcceso { get; set; }
     }
 }
-}
