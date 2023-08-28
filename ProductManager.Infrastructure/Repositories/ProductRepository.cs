@@ -19,37 +19,37 @@ namespace ProductManager.Infrastructure.Repositories
             this.productManager_Context = _productManagerDB;
         }
 
-        public async Task<Productos> ObtenerPorIdAsync(int productoId)
+        public async Task<Producto> ObtenerPorIdAsync(int productoId)
         {
             return await productManager_Context.Productos.FindAsync(productoId);
         }
 
-        public async Task<IEnumerable<Productos>> ObtenerTodosAsync()
+        public async Task<IEnumerable<Producto>> ObtenerTodosAsync()
         {
             return await productManager_Context.Productos.ToListAsync();
         }
 
-        public async Task<IEnumerable<Productos>> BuscarProductosPorNombreAsync(string nombre)
+        public async Task<IEnumerable<Producto>> BuscarProductosPorNombreAsync(string nombre)
         {
             return await productManager_Context.Productos
                 .Where(p => p.NombreProducto.Contains(nombre))
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<Productos>> BuscarProductosPorRangoPrecioAsync(decimal precioMinimo, decimal precioMaximo)
+        public async Task<IEnumerable<Producto>> BuscarProductosPorRangoPrecioAsync(decimal precioMinimo, decimal precioMaximo)
         {
             return await productManager_Context.Productos
                 .Where(p => p.Precio >= precioMinimo && p.Precio <= precioMaximo)
                 .ToListAsync();
         }
 
-        public async Task AgregarAsync(Productos producto)
+        public async Task AgregarAsync(Producto producto)
         {
             productManager_Context.Productos.Add(producto);
             await productManager_Context.SaveChangesAsync();
         }
 
-        public async Task ActualizarAsync(Productos producto)
+        public async Task ActualizarAsync(Producto producto)
         {
             productManager_Context.Entry(producto).State = EntityState.Modified;
             await productManager_Context.SaveChangesAsync();

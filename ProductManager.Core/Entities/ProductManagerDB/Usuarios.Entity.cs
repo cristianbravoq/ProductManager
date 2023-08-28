@@ -4,15 +4,27 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProductManager.Core.Entities.ProductManagerDB
 {
-    [Table("Usuarios", Schema = "dbo")]
-    public class Usuarios
+    public class Usuario
     {
         [Key]
         public int UsuarioID { get; set; }
+
+        [Required]
+        [MaxLength(50)]
         public string Nombre { get; set; }
+
+        [Required]
+        [MaxLength(128)]
         public string Contraseña { get; set; }
+
+        [Required]
+        [MaxLength(20)]
         public string Rol { get; set; }
-        public System.DateTime FechaCreacion { get; set; }
-        public Nullable<System.DateTime> UltimoAcceso { get; set; }
+
+        [Required]
+        public DateTime FechaCreacion { get; set; } = DateTime.UtcNow;
+
+        public DateTime? UltimoAcceso { get; set; }
     }
+}
 }

@@ -4,21 +4,31 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProductManager.Core.Entities.ProductManagerDB
 {
-    [Table("Usuarios", Schema = "dbo")]
-    public class Productos
+    public class Producto
     {
         [Key]
         public int ProductoID { get; set; }
+
+        [Required]
+        [MaxLength(100)]
         public string NombreProducto { get; set; }
+
+        [MaxLength(255)]
         public string Descripcion { get; set; }
-        public decimal Precio { get; set; }
-        public int CantidadDisponible { get; set; }
-        public System.DateTime FechaCreacion { get; set; }
-        public Nullable<System.DateTime> UltimaActualizacion { get; set; }
 
         [ForeignKey("Categoria")]
-        public Nullable<int> CategoriaID { get; set; }
+        public int CategoriaID { get; set; }
+        public Categoria Categoria { get; set; }
 
-        public virtual Categorias Categoria { get; set; }
+        [Required]
+        public decimal Precio { get; set; }
+
+        [Required]
+        public int CantidadDisponible { get; set; }
+
+        [Required]
+        public DateTime FechaCreacion { get; set; } = DateTime.UtcNow;
+
+        public DateTime? UltimaActualizacion { get; set; }
     }
 }

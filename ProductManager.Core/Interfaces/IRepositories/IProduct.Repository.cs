@@ -7,12 +7,12 @@ namespace ProductManager.Core.Interfaces.IRepositories
 {
     public interface IProductRepository
     {
-        Task<Productos> ObtenerPorIdAsync(int productoId);
-        Task<IEnumerable<Productos>> ObtenerTodosAsync();
-        Task<IEnumerable<Productos>> BuscarProductosPorNombreAsync(string nombre);
-        Task<IEnumerable<Productos>> BuscarProductosPorRangoPrecioAsync(decimal precioMinimo, decimal precioMaximo);
-        Task AgregarAsync(Productos producto);
-        Task ActualizarAsync(Productos producto);
+        Task<Producto> ObtenerPorIdAsync(int productoId);
+        Task<IEnumerable<Producto>> ObtenerTodosAsync();
+        Task<IEnumerable<Producto>> BuscarProductosPorNombreAsync(string nombre);
+        Task<IEnumerable<Producto>> BuscarProductosPorRangoPrecioAsync(decimal precioMinimo, decimal precioMaximo);
+        Task AgregarAsync(Producto producto);
+        Task ActualizarAsync(Producto producto);
         Task EliminarAsync(int productoId);
     }
 }

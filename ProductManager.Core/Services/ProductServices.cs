@@ -52,7 +52,7 @@ namespace ProductManager.Core.Services
 
         public async Task CrearProductoAsync(ProductoDTO productoDTO)
         {
-            var nuevoProducto = new Productos
+            var nuevoProducto = new Producto
             {
                 NombreProducto = productoDTO.NombreProducto,
                 Descripcion = productoDTO.Descripcion,
@@ -83,7 +83,7 @@ namespace ProductManager.Core.Services
 
         public async Task<IEnumerable<DetallesProductoDTO>> BuscarProductosAsync(BusquedaProductoDTO busquedaDTO)
         {
-            IEnumerable<Productos> productosEncontrados;
+            IEnumerable<Producto> productosEncontrados;
 
             if (!string.IsNullOrEmpty(busquedaDTO.NombreProducto))
             {

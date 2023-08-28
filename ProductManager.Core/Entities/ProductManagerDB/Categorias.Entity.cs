@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace ProductManager.Core.Entities.ProductManagerDB
 {
-    [Table("Categorias", Schema = "dbo")]
-    public class Categorias
+    public class Categoria
     {
         [Key]
         public int CategoriaID { get; set; }
-        public string NombreCategoria { get; set; }
 
-        public virtual ICollection<Productos> Productos { get; set; }
+        [Required]
+        [MaxLength(50)]
+        public string NombreCategoria { get; set; }
     }
 }
