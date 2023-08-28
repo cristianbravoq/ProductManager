@@ -1,14 +1,14 @@
-## Nombre de la Aplicación
+# Nombre de la Aplicación
 Breve descripción o introducción de la aplicación.
 
-# Requisitos Previos
+## Requisitos Previos
 Antes de comenzar, asegúrate de tener instalado lo siguiente:
 
 Visual Studio (preferiblemente la última versión)
 SQL Server
 Git
 
-## Configuración
+# Configuración
 1- Clona este repositorio en tu máquina local: git clone https://github.com/TuUsuario/TuRepositorio.git
 2- Abre el archivo de solución ProductManager.sln en Visual Studio.
 3- Configura la cadena de conexión a la base de datos en web.config:
@@ -17,13 +17,13 @@ Git
     </connectionStrings>
 4- Compila la solución en Visual Studio.
 
-## Ejecución
+# Ejecución
 Inicia la aplicación presionando el botón de "Start" o utilizando F5 en Visual Studio.
 
-## Uso
+# Uso
 A continuación, se detallan los diferentes endpoints disponibles en la API y cómo usarlos:
 
-# Obtener Todos los Productos
+## Obtener Todos los Productos
 Método: GET
 Ruta: /Product
 
@@ -32,7 +32,7 @@ Este endpoint te permite obtener todos los productos disponibles en la base de d
 Ejemplo de solicitud:
   GET /Product
 
-# Obtener Detalles de un Producto
+## Obtener Detalles de un Producto
 Método: GET
 Ruta: /Product/{id}
 
@@ -41,7 +41,7 @@ Este endpoint te permite obtener los detalles de un producto específico según 
 Ejemplo de solicitud:
   GET /Product/{id}
 
-# Crear un Producto Nuevo
+## Crear un Producto Nuevo
 Método: POST
 Ruta: /Product
 
@@ -59,7 +59,7 @@ Ejemplo de solicitud:
     "CantidadDisponible": 50
   }
 
-# Actualizar un Producto Existente
+## Actualizar un Producto Existente
 Método: PUT
 Ruta: /Product/{id}
 
@@ -77,7 +77,7 @@ Ejemplo de solicitud:
     "CantidadDisponible": 75
   }
 
-# Buscar Productos
+## Buscar Productos
 Método: GET
 Ruta: /Product/BuscarProductos?NombreProducto=Producto&PrecioMinimo=50&PrecioMaximo=200
 
@@ -86,7 +86,7 @@ Este endpoint te permite buscar productos con filtros opcionales, como nombre y 
 Ejemplo de solicitud:
   GET /Product/BuscarProductos?NombreProducto=Producto&PrecioMinimo=50&PrecioMaximo=200
 
-# Eliminar un Producto
+## Eliminar un Producto
 Método: DELETE
 Ruta: /Product/{id}
 
