@@ -4,7 +4,7 @@ Plataforma para la gestión de productos, permitiendo realizar diversas operacio
 ## Requisitos Previos
 Antes de comenzar, asegúrate de tener instalado lo siguiente:
 
-Visual Studio (preferiblemente la última versión)
+Visual Studio (preferiblemente 2019)
 SQL Server
 Git
 
