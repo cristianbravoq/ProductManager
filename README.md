@@ -1,5 +1,5 @@
-# Nombre de la Aplicación
-Breve descripción o introducción de la aplicación.
+# Product Manager
+Plataforma para la gestión de productos, permitiendo realizar diversas operaciones relacionadas con la administración de productos y categorías. Esta API ofrece una interfaz para interactuar con una base de datos que almacena información sobre los productos disponibles, incluyendo detalles como el nombre del producto, descripción, categoría, precio, cantidad disponible y fechas relevantes.
 
 ## Requisitos Previos
 Antes de comenzar, asegúrate de tener instalado lo siguiente:
@@ -9,7 +9,7 @@ SQL Server
 Git
 
 # Configuración
-1- Clona este repositorio en tu máquina local: git clone https://github.com/TuUsuario/TuRepositorio.git
+1- Clona este repositorio en tu máquina local: git clone https://github.com/cristianbravoq/ProductManager.git
 2- Abre el archivo de solución ProductManager.sln en Visual Studio.
 3- Configura la cadena de conexión a la base de datos en web.config:
     <connectionStrings>
