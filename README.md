@@ -12,6 +12,7 @@ Git
 1- Clona este repositorio en tu máquina local: git clone https://github.com/cristianbravoq/ProductManager.git
 2- Abre el archivo de solución ProductManager.sln en Visual Studio.
 3- Configura la cadena de conexión a la base de datos en web.config:
+    Para la creacion de las tablas puedes ejecutar el query de Sql Server adjunto a este repositorio.
     <connectionStrings>
       <add name="ProductManagerContext" connectionString="Server=NAME-SERVER;Database=ProductManagerDB;Integrated Security=True" providerName="System.Data.SqlClient" />
     </connectionStrings>
@@ -22,6 +23,7 @@ Inicia la aplicación presionando el botón de "Start" o utilizando F5 en Visual
 
 # Uso
 A continuación, se detallan los diferentes endpoints disponibles en la API y cómo usarlos:
+    Puedes utilizar la coleccion de PostMana adjunta a este repositorio como guia.
 
 ## Obtener Todos los Productos
 Método: GET
