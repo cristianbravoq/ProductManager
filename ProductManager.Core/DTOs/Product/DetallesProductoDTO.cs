@@ -11,7 +11,6 @@ namespace ProductManager.Core.DTOs.Product
         public int ProductoID { get; set; }
         public string NombreProducto { get; set; }
         public string Descripcion { get; set; }
-        public int CategoriaID { get; set; }
         public string NombreCategoria { get; set; }
         public decimal Precio { get; set; }
         public int CantidadDisponible { get; set; }

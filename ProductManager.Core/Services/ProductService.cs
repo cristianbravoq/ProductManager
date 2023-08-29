@@ -9,14 +9,11 @@ using ProductManager.Core.Interfaces.IRepositories;
 using ProductManager.Core.Interfaces.IServices;
 namespace ProductManager.Core.Services
 {
-    public class ProductServices : IProductService
+    public class ProductService : IProductService
     {
         private readonly IProductRepository _productoRepository;
 
-        public ProductServices(IProductRepository productoRepository)
-        {
-            _productoRepository = productoRepository;
-        }
+        public ProductService(IProductRepository productoRepository) => _productoRepository = productoRepository;
 
         public async Task<IEnumerable<ListaProductoDTO>> ObtenerTodosLosProductosAsync()
         {
@@ -43,7 +40,6 @@ namespace ProductManager.Core.Services
                 ProductoID = producto.ProductoID,
                 NombreProducto = producto.NombreProducto,
                 Descripcion = producto.Descripcion,
-                CategoriaID = (int)producto.CategoriaID,
                 NombreCategoria = producto.Categoria.NombreCategoria, // Si tienes una referencia a la categoría
                 Precio = producto.Precio,
                 CantidadDisponible = producto.CantidadDisponible
@@ -77,6 +73,7 @@ namespace ProductManager.Core.Services
             productoExistente.CategoriaID = productoDTO.CategoriaID;
             productoExistente.Precio = productoDTO.Precio;
             productoExistente.CantidadDisponible = productoDTO.CantidadDisponible;
+            productoExistente.UltimaActualizacion = DateTime.Now;
 
             await _productoRepository.ActualizarAsync(productoExistente);
         }
@@ -106,7 +103,7 @@ namespace ProductManager.Core.Services
                 ProductoID = p.ProductoID,
                 NombreProducto = p.NombreProducto,
                 Descripcion = p.Descripcion,
-                CategoriaID = (int)p.CategoriaID,
+                NombreCategoria = p.Categoria.NombreCategoria,
                 Precio = p.Precio,
                 CantidadDisponible = p.CantidadDisponible
             });

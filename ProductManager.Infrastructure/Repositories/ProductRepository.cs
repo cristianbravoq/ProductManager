@@ -21,7 +21,7 @@ namespace ProductManager.Infrastructure.Repositories
 
         public async Task<Producto> ObtenerPorIdAsync(int productoId)
         {
-            return await productManager_Context.Productos.FindAsync(productoId);
+            return await productManager_Context.Productos.Include(p => p.Categoria).FirstOrDefaultAsync(p => p.ProductoID == productoId);
         }
 
         public async Task<IEnumerable<Producto>> ObtenerTodosAsync()
@@ -31,14 +31,14 @@ namespace ProductManager.Infrastructure.Repositories
 
         public async Task<IEnumerable<Producto>> BuscarProductosPorNombreAsync(string nombre)
         {
-            return await productManager_Context.Productos
+            return await productManager_Context.Productos.Include(p => p.Categoria)
                 .Where(p => p.NombreProducto.Contains(nombre))
                 .ToListAsync();
         }
 
         public async Task<IEnumerable<Producto>> BuscarProductosPorRangoPrecioAsync(decimal precioMinimo, decimal precioMaximo)
         {
-            return await productManager_Context.Productos
+            return await productManager_Context.Productos.Include(p => p.Categoria)
                 .Where(p => p.Precio >= precioMinimo && p.Precio <= precioMaximo)
                 .ToListAsync();
         }
@@ -61,6 +61,7 @@ namespace ProductManager.Infrastructure.Repositories
             if (producto != null)
             {
                 productManager_Context.Productos.Remove(producto);
+                await productManager_Context.SaveChangesAsync();
             }
         }
     }

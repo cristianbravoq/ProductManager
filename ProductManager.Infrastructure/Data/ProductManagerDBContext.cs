@@ -6,7 +6,7 @@ namespace ProductManager.Infrastructure.Data
 {
     public class ProductManagerDBContext : DbContext
     {
-        private static ProductManagerDBContext productManagerDBContext = null;
+        //private static ProductManagerDBContext productManagerDBContext = null;
 
         public ProductManagerDBContext() : base("ProductManagerContext") { }
 

@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOs\Authentication\AuthenticationDTO.cs" />
+    <Compile Include="DTOs\Authentication\LoginDTO.cs" />
     <Compile Include="DTOs\Product\BusquedaProductoDTO.cs" />
     <Compile Include="DTOs\Product\DetallesProductoDTO.cs" />
     <Compile Include="DTOs\Product\ListaProductoDTO.cs" />
@@ -50,10 +52,14 @@
     <Compile Include="Entities\ProductManagerDB\Productos.Entity.cs" />
     <Compile Include="Entities\ProductManagerDB\Usuarios.Entity.cs" />
     <Compile Include="Interfaces\IRepositories\IProduct.Repository.cs" />
+    <Compile Include="Interfaces\IServices\IAuthentication.Service.cs" />
     <Compile Include="Interfaces\IServices\IProduct.Service.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\ProductServices.cs" />
+    <Compile Include="Services\AuthenticationService.cs" />
+    <Compile Include="Services\ProductService.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="Interfaces\IRepositories\IAuthentication.Repository.cs" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
