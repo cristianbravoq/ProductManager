@@ -23,7 +23,7 @@ Inicia la aplicación presionando el botón de "Start" o utilizando F5 en Visual
 
 # Uso
 A continuación, se detallan los diferentes endpoints disponibles en la API y cómo usarlos:
-    Puedes utilizar la coleccion de PostMana adjunta a este repositorio como guia.
+    Puedes utilizar la coleccion de PostMan adjunta a este repositorio como guia.
 
 ## Obtener Todos los Productos
 Método: GET
