@@ -1,0 +1,189 @@
+{
+	"info": {
+		"_postman_id": "0eab93eb-8d21-42a4-82d6-8da423b6f204",
+		"name": "ProductManager_Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19948967",
+		"_collection_link": "https://red-flare-194468-1.postman.co/workspace/Team-Workspace~39a82d94-455d-4231-8713-3cdc8a9ff400/collection/19948967-0eab93eb-8d21-42a4-82d6-8da423b6f204?action=share&source=collection_link&creator=19948967"
+	},
+	"item": [
+		{
+			"name": "Autenticacion",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Usuario\" : \"juanperez\",\r\n    \"Contrasena\" : \"contraseña123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:54145/Authentication",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "54145",
+					"path": [
+						"Authentication"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener producto por Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:54145/Product/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "54145",
+					"path": [
+						"Product",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todo los productos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:54145/Product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "54145",
+					"path": [
+						"Product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar por filtros",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:54145/BuscarProductos?NombreProducto=pro&PrecioMinimo=100&PrecioMaximo=90000000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "54145",
+					"path": [
+						"BuscarProductos"
+					],
+					"query": [
+						{
+							"key": "NombreProducto",
+							"value": "pro"
+						},
+						{
+							"key": "PrecioMinimo",
+							"value": "100"
+						},
+						{
+							"key": "PrecioMaximo",
+							"value": "90000000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear producto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"NombreProducto\": \"MacBook Air\",\r\n    \"Descripcion\": \"Laptop de alta gama\",\r\n    \"CategoriaID\": 2,\r\n    \"Precio\": 3500000.00,\r\n    \"CantidadDisponible\": 5\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:54145/Product/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "54145",
+					"path": [
+						"Product",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar producto",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"NombreProducto\": \"MacBook Air Gen 5\",\r\n    \"Descripcion\": \"Procesador M1\",\r\n    \"CategoriaID\": 2,\r\n    \"Precio\": 3500000.00,\r\n    \"CantidadDisponible\": 16\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:54145/Product/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "54145",
+					"path": [
+						"Product",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar producto",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:54145/Product/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "54145",
+					"path": [
+						"Product",
+						"6"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
