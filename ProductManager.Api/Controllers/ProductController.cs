@@ -1,10 +1,11 @@
-﻿using System;
+﻿using ProductManager.Core.DTOs.Product;
+using ProductManager.Core.Interfaces.IServices;
+using System;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-
-using ProductManager.Core.DTOs.Product;
-using ProductManager.Core.Interfaces.IServices;
 
 namespace ProductManager.Api.Controllers
 {
@@ -16,40 +17,66 @@ namespace ProductManager.Api.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> ObtenerTodosLosProductos()
         {
-            var productos = await _productService.ObtenerTodosLosProductosAsync();
-            return Ok(productos);
+            try
+            {
+                var productos = await _productService.ObtenerTodosLosProductosAsync();
+                return Ok(productos);
+            }
+            catch (Exception ex)
+            {
+                // Manejar la excepción de manera adecuada, como registrarla y devolver una respuesta de error
+                return InternalServerError(ex);
+            }
         }
 
         [HttpGet]
         public async Task<IHttpActionResult> ObtenerDetallesProducto(int id)
         {
-            var producto = await _productService.ObtenerDetallesProductoAsync(id);
-            if (producto == null)
+            try
             {
-                return NotFound(); // Producto no encontrado
+                var producto = await _productService.ObtenerDetallesProductoAsync(id);
+                if (producto == null)
+                {
+                    var message = string.Format($"Product with id = {id} not found");
+                    return (IHttpActionResult)Request.CreateErrorResponse(HttpStatusCode.NotFound, message);
+                }
+                return Ok(producto);
             }
-            return Ok(producto);
+            catch (Exception ex)
+            {
+                // Manejar la excepción de manera adecuada, como registrarla y devolver una respuesta de error
+                return InternalServerError(ex);
+            }
         }
 
         [HttpPost]
         [Authorize(Roles = "Administrador")]
         public async Task<IHttpActionResult> CrearProducto(ProductoDTO productoDTO)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest(ModelState); // Datos inválidos
-            }
+                if (!ModelState.IsValid)
+                {
+                    return (IHttpActionResult)Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
 
-            await _productService.CrearProductoAsync(productoDTO);
-            return Ok("Producto creado exitosamente");
+                await _productService.CrearProductoAsync(productoDTO);
+                return Ok("Product successfully created");
+            }
+            catch (Exception ex)
+            {
+                // Manejar la excepción de manera adecuada, como registrarla y devolver una respuesta de error
+                return InternalServerError(ex);
+            }
         }
 
         [HttpPut]
+        [Authorize(Roles = "Administrador")]
         public async Task<IHttpActionResult> ActualizarProducto(int id, ProductoDTO productoDTO)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState); // Datos inválidos
+                return (IHttpActionResult)Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             }
 
             try
@@ -58,10 +85,11 @@ namespace ProductManager.Api.Controllers
             }
             catch (Exception)
             {
-                return NotFound(); // Producto no encontrado
+                var message = string.Format($"Product with id = {id} not found");
+                return (IHttpActionResult)Request.CreateErrorResponse(HttpStatusCode.NotFound, message);
             }
 
-            return Ok("Producto actualizado exitosamente");
+            return Ok("Product successfully upgraded");
         }
 
         [HttpGet]
@@ -71,12 +99,14 @@ namespace ProductManager.Api.Controllers
             var productos = await _productService.BuscarProductosAsync(busquedaDTO);
             if (!productos.Any())
             {
-                return NotFound(); // Productos no encontrados
+                var message = string.Format("The filters provided do not return any product");
+                return (IHttpActionResult)Request.CreateErrorResponse(HttpStatusCode.NotFound, message);
             }
             return Ok(productos);
         }
 
         [HttpDelete]
+        [Authorize(Roles = "Administrador")]
         public async Task<IHttpActionResult> EliminarProducto(int id)
         {
             try
@@ -85,10 +115,11 @@ namespace ProductManager.Api.Controllers
             }
             catch (Exception)
             {
-                return NotFound(); // Producto no encontrado
+                var message = string.Format($"Product with id = {id} not found");
+                return (IHttpActionResult)Request.CreateErrorResponse(HttpStatusCode.NotFound, message);
             }
 
-            return Ok("Producto eliminado exitosamente");
+            return Ok("Product successfully removed");
         }
     }
 }
