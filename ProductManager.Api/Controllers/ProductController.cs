@@ -24,7 +24,6 @@ namespace ProductManager.Api.Controllers
             }
             catch (Exception ex)
             {
-                // Manejar la excepción de manera adecuada, como registrarla y devolver una respuesta de error
                 return InternalServerError(ex);
             }
         }
@@ -37,14 +36,12 @@ namespace ProductManager.Api.Controllers
                 var producto = await _productService.ObtenerDetallesProductoAsync(id);
                 if (producto == null)
                 {
-                    var message = string.Format($"Product with id = {id} not found");
-                    return (IHttpActionResult)Request.CreateErrorResponse(HttpStatusCode.NotFound, message);
+                    return NotFound();
                 }
                 return Ok(producto);
             }
             catch (Exception ex)
             {
-                // Manejar la excepción de manera adecuada, como registrarla y devolver una respuesta de error
                 return InternalServerError(ex);
             }
         }
@@ -57,7 +54,7 @@ namespace ProductManager.Api.Controllers
             {
                 if (!ModelState.IsValid)
                 {
-                    return (IHttpActionResult)Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                    return BadRequest(ModelState);
                 }
 
                 await _productService.CrearProductoAsync(productoDTO);
@@ -65,7 +62,6 @@ namespace ProductManager.Api.Controllers
             }
             catch (Exception ex)
             {
-                // Manejar la excepción de manera adecuada, como registrarla y devolver una respuesta de error
                 return InternalServerError(ex);
             }
         }
@@ -76,7 +72,7 @@ namespace ProductManager.Api.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return (IHttpActionResult)Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                return BadRequest(ModelState);
             }
 
             try
@@ -85,8 +81,7 @@ namespace ProductManager.Api.Controllers
             }
             catch (Exception)
             {
-                var message = string.Format($"Product with id = {id} not found");
-                return (IHttpActionResult)Request.CreateErrorResponse(HttpStatusCode.NotFound, message);
+                return NotFound();
             }
 
             return Ok("Product successfully upgraded");
@@ -96,14 +91,23 @@ namespace ProductManager.Api.Controllers
         [Route("BuscarProductos")]
         public async Task<IHttpActionResult> BuscarProductos([FromUri] BusquedaProductoDTO busquedaDTO)
         {
-            var productos = await _productService.BuscarProductosAsync(busquedaDTO);
-            if (!productos.Any())
+            try
             {
-                var message = string.Format("The filters provided do not return any product");
-                return (IHttpActionResult)Request.CreateErrorResponse(HttpStatusCode.NotFound, message);
+                var productos = await _productService.BuscarProductosAsync(busquedaDTO);
+
+                if (!productos.Any())
+                {
+                    return NotFound();
+                }
+
+                return Ok(productos);
             }
-            return Ok(productos);
+            catch (Exception)
+            {
+                return InternalServerError();
+            }
         }
+
 
         [HttpDelete]
         [Authorize(Roles = "Administrador")]
@@ -111,15 +115,21 @@ namespace ProductManager.Api.Controllers
         {
             try
             {
-                await _productService.EliminarProductoAsync(id);
-            }
-            catch (Exception)
-            {
-                var message = string.Format($"Product with id = {id} not found");
-                return (IHttpActionResult)Request.CreateErrorResponse(HttpStatusCode.NotFound, message);
-            }
+                try
+                {
+                    await _productService.EliminarProductoAsync(id);
+                }
+                catch (Exception)
+                {
+                    return NotFound();
+                }
 
-            return Ok("Product successfully removed");
+                return Ok("Product successfully removed");
+            }
+            catch
+            {
+                return InternalServerError();
+            }
         }
     }
 }
