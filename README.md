@@ -13,7 +13,7 @@ Git
 2- Abre el archivo de solución ProductManager.sln en Visual Studio.
 3- Configura la cadena de conexión a la base de datos en web.config:
     Para la creacion de las tablas puedes ejecutar el query de Sql Server adjunto a este repositorio.
-      "<add name="ProductManagerContext" connectionString="Server=NAME-SERVER;Database=ProductManagerDB;Integrated Security=True" providerName="System.Data.SqlClient" />"
+      add name="ProductManagerContext" connectionString="Server=NAME-SERVER;Database=ProductManagerDB;Integrated Security=True" providerName="System.Data.SqlClient"
 4- Compila la solución en Visual Studio.
 
 # Ejecución
